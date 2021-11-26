@@ -24,5 +24,5 @@ class FiltersSchema(BaseModel):
     response_model=List[EmployeeSchemaRead]
 )
 async def employee_get(filters: FiltersSchema = Depends(), db_session=Depends(database)):
-    employees = await db_session["employees"].find().skip(filters.start).limit(filters.limit).to_list(1000)
+    employees = await db_session["employees"].find().skip(filters.start).limit(filters.limit).to_list(filters.limit)
     return employees
