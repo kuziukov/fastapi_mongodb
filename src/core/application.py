@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from api.router_api import create_routes
+from api.router_api import init_routes
 from config import (
     PROJECT_NAME,
     DEBUG,
     VERSION
 )
+from core.cors import init_cors
 from core.mongodb import (
     connect_mongo,
     close_mongo
@@ -20,5 +21,6 @@ def create_app() -> FastAPI:
         on_shutdown=[close_mongo],
         middleware=[]
     )
-    create_routes(app)
+    init_routes(app)
+    init_cors(app)
     return app
