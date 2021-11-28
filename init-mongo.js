@@ -1,3 +1,4 @@
+db.employees.createIndex({ name: "text" })
 db.employees.insertMany([
     {
         "name": "Flynn Vang",
@@ -6000,3 +6001,4 @@ db.employees.insertMany([
         "salary": 7451
     }
 ])
+db.employees.find().forEach(function(element) { element.join_date = new Date(element.join_date); db.employees.save(element); })
